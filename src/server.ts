@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import itemRoutes from './routes/itemRoutes';
 import taskRoutes from './routes/taskRoutes'; // Nova rota de tarefas
+import userRoutes from './routes/userRoutes'
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGO_URI!)
 // Rotas
 app.use('/items', itemRoutes); // Rota para itens (já existente)
 app.use('/tasks', taskRoutes); // Rota para tarefas (nova)
+app.use('/users', userRoutes);
 
 // Iniciar o servidor
 app.listen(port, () => {

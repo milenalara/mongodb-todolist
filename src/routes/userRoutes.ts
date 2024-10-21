@@ -4,7 +4,7 @@ import User, { IUser } from '../models/User';
 const router = express.Router();
 
 // get All
-router.get('/user', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
     try {
         const users: IUser[] = await User.find();
         res.json(users);
@@ -15,7 +15,7 @@ router.get('/user', async (req: Request, res: Response) => {
 });
 
 // create
-router.post('/user', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
     try {
         const user = new User({
             name: req.body.name,
@@ -28,3 +28,4 @@ router.post('/user', async (req: Request, res: Response) => {
     }
 })
 
+export default router;

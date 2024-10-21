@@ -4,7 +4,7 @@ import Task from '../models/Task';
 const router = express.Router();
 
 // Rota para obter todas as tarefas
-router.get('/task', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     const tasks = await Task.find(); 
     res.json(tasks); 
