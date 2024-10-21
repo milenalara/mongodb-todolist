@@ -1,5 +1,6 @@
 import express, { Request, Response, Router } from 'express';
 import User, { IUser } from '../models/User';
+import Task, { ITask } from '../models/Task'
 
 const router: Router = express.Router();
 
@@ -41,12 +42,35 @@ router.put('/:id', async (req: Request, res: Response):Promise<any> => {
             user.name = req.body.name;
         }
 
-        if (req.body.tasks != null) {
-            user.tasks = req.body.tasks;
-        }
         await user.save();
 
         res.status(200).json({ message: 'Usuário atualizado com sucesso', user });
+    } catch (err) {
+        const error = err as Error;
+        res.status(400).json({ message: error.message })
+    }
+})
+
+// atribuir task ao user
+router.put('/task/:userId', async (req: Request, res: Response):Promise<any> => {
+    try {
+        const user = await User.findById(req.params.userId);
+
+        if (user == null) {
+            return res.status(404).json({ message: 'Usuário não encontrado' });
+        }
+
+        const task = await Task.findById(req.body.taskId);
+
+        if (task == null) {
+            return res.status(404).json({message: 'Task não escontrada'})
+        }
+
+        user.tasks.push(task);
+
+        await user.save();
+
+        res.status(200).json({ message: 'Tarefa atribuída com sucesso', user });
     } catch (err) {
         const error = err as Error;
         res.status(400).json({ message: error.message })
