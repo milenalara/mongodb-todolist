@@ -14,7 +14,7 @@ Você precisa ter o Node.js e o MongoDB instalados na sua máquina. Para mais in
 This is a simple "To do list" API made with Node.js and MongoDB for the Software Design class at the Pontifical Catholic University of Minas Gerais.
 
 ## Running the application
-You need to have Node.js and MongoDB installed on your machine. For more instructions on this, see the [set up manual](./doc/Setup.md).
+You need to have Node.js and MongoDB installed on your machine. For more instructions on this, see the [set up manual](./doc/README.md).
 
 1. Open the `src` folder in the bash command line terminal.
 2. Run the local MongoDB server: `mongod`
