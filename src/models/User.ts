@@ -1,9 +1,10 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { ITask } from './Task'
 
 // 1. Definir interface
 export interface IUser extends Document {
     name: string,
-    tasts: string[]
+    tasks: ITask[]
 }
 
 // 2. Definir o schema
