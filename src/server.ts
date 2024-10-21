@@ -2,26 +2,24 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import itemRoutes from './routes/itemRoutes';
-import taskRoutes from './routes/taskRoutes'; // Nova rota de tarefas
-import userRoutes from './routes/userRoutes'
+import taskRoutes from './routes/taskRoutes'; // Importe a rota de tarefas
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware para parsing de JSON
+// Middleware para JSON
 app.use(express.json());
 
-// Conexão com MongoDB
+// Conectar ao MongoDB
 mongoose.connect(process.env.MONGO_URI!)
   .then(() => console.log('MongoDB conectado'))
-  .catch(err => console.error('Erro na conexão com o MongoDB:', err));
+  .catch(err => console.error('Erro ao conectar no MongoDB:', err));
 
 // Rotas
-app.use('/items', itemRoutes); // Rota para itens (já existente)
-app.use('/tasks', taskRoutes); // Rota para tarefas (nova)
-app.use('/users', userRoutes);
+app.use('/items', itemRoutes);
+app.use('/tasks', taskRoutes); // Use a rota de tarefas
 
 // Iniciar o servidor
 app.listen(port, () => {
