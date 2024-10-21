@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import express, { Request, Response } from 'express';
 import Task from '../models/Task';
 
@@ -32,5 +31,3 @@ router.post('/', async (req: Request, res: Response) => {
 })
 
 export default router;
-=======
->>>>>>> 32e30fbf50134878971759c2ab538a2728017c92
