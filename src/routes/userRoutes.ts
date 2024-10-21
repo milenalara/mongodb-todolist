@@ -77,4 +77,20 @@ router.put('/task/:userId', async (req: Request, res: Response):Promise<any> => 
     }
 })
 
+// Rota para obter todas as tarefas de um usuário
+router.get('/:userId/tasks', async (req: Request, res: Response): Promise<any> => {
+    try {
+      const user = await User.findById(req.params.userId).populate('tasks');
+      
+      if (!user) {
+        return res.status(404).json({ message: 'Usuário não encontrado' });
+      }
+  
+      res.json(user.tasks);
+    } catch (err) {
+      const error = err as Error;
+      res.status(500).json({ message: 'Erro ao buscar as tarefas do usuário', errorMessage: error.message });
+    }
+  });
+
 export default router;
