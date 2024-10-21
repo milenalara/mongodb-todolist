@@ -3,7 +3,8 @@ import { IUser } from './User';
 
 // 1. Definir interface
 export interface ITask extends Document {
-    text: string,
+    header: string,
+    body: string,
     deadline: Date,
     status: string,
     user: Schema.Types.ObjectId;
@@ -11,15 +12,16 @@ export interface ITask extends Document {
 
 // 2. Definir o schema
 const taskSchema: Schema = new Schema({
-    text: { type: String, required: true },
+    header: { type: String, required: true },
+    body: { type: String, required: false },
     deadline: { type: Date, required: true },
-    status: { 
-        type: String, 
+    status: {
+        type: String,
         enum: ['pendente', 'em progresso', 'concluido', 'em atraso'],
         default: 'pendente',
         required: true
     },
-    user: { type: Schema.Types.ObjectId, ref: 'User', required: true}
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 // 3. Exportar o modelo Mongoose
